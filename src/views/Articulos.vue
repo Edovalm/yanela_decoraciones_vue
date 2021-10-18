@@ -8,14 +8,14 @@
             <h2 class="card__subtitle">Un Subtítulo</h2>
             <p class="card__text">Este es un ejemplo de guia para saber que clases usar en las páginas que hay textos con subtítulos en lo referente al contenedor de calse .card.</p>
             <section class="grid-wrapper grid-column-2" >
-              <article class="item-card" v-for="categoria in categorias" :key="categoria.idCategorias">
+              <article class="item-card" v-for="producto in productos" :key="producto.idProductos">
                 <a class="item-card__link" href="#">
-                    <h2 class="item-card__title">{{categoria.nombreCategoria}}</h2>
-                    <img class="item-card__image" src="../assets/img-categoria-cortinas.jpg" alt="Productos Cortinas">
+                    <h2 class="item-card__title">{{producto.nombreProducto}}</h2>
+                    <img class="item-card__image" src="../assets/img-categoria-persianas.jpg" alt="Productos Persianas">
                     <div class="item-card__details">
                         <span class="icon-search"></span>
                     </div>
-                    <p class="item-card__info">{{categoria.imgCategoria}}{{categoria.descripcionCategoria}}<span class="item-card__button">Ver Mas...</span></p>
+                    <p class="item-card__info">{{producto.imgProducto}} <span> </span>{{producto.descripcionProducto}}<span> </span><span class="item-card__button"> Ver Mas...</span></p>
                 </a>
               </article>
             </section>
@@ -35,15 +35,15 @@ export default {
   },
   data(){
   return{
-     categorias:[]
+     productos:[]
   }
 },
 mounted(){
   let vue=this;
-  axios.get('http://localhost:8080/api/categorias/listar')
+  axios.get('http://localhost:8080/api/productos/listar')
   .then( response =>{
 
-    vue.categorias=response.data;
+    vue.productos=response.data;
   })
 },methods:{
 

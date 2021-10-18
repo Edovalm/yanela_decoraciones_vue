@@ -7,7 +7,7 @@
             </router-link>
 
             <ul class="main-nav__menu">
-                <li><router-link to="/cortinas" class="main-nav__menu-link" exact-active-class="main-nav__menu-link--active">Cortinas</router-link></li>  
+                <li><router-link to="/articulos" class="main-nav__menu-link" exact-active-class="main-nav__menu-link--active">Todos los Productos</router-link></li>  
                 <li><router-link to="/about" class="main-nav__menu-link" exact-active-class="main-nav__menu-link--active">¿Quienes Somos?</router-link></li>
                 <li><router-link to="/registros" class="main-nav__menu-link" exact-active-class="main-nav__menu-link--active">Registros</router-link></li>  
             </ul>
