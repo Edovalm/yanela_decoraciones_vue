@@ -1,5 +1,5 @@
 <template>
- <div class="registos">
+ <div>
   <RegularHero/>
   <main>
     <div class="wrapper card space-usher">

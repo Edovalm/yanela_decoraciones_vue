@@ -14,8 +14,29 @@
         </div>
     </nav>
     <router-view/>
+    <Aside1/>
+    <Aside2/>
+    <Footer/>
   </div>
 </template>
+
+<script>
+// @ is an alias to /src
+import Aside1 from '@/components/Aside1.vue'
+import Aside2 from '@/components/Aside2.vue'
+import Footer from '@/components/Footer.vue'
+
+export default {
+  name: 'App',
+  components: {
+    Aside1,Aside2,Footer
+  }
+}
+</script>
+
+
+
+
 
 <style>
 /*### GOOGLE-FONTS ###*/
@@ -301,7 +322,7 @@ icons-set
 
 /* Main Footer */
 .main-footer {
-    /* background: url(../images/hogar-persiana-footer.jpg) center center / cover fixed; */
+    background: url(assets/hogar-persiana-footer.jpg) center center / cover fixed; 
 }
 
 .main-footer__card {

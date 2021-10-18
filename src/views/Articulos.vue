@@ -9,7 +9,7 @@
             <p class="card__text">Este es un ejemplo de guia para saber que clases usar en las páginas que hay textos con subtítulos en lo referente al contenedor de calse .card.</p>
             <section class="grid-wrapper grid-column-2" >
               <article class="item-card" v-for="producto in productos" :key="producto.idProductos">
-                <a class="item-card__link" href="#">
+                <a class="item-card__link" href="/Articulo">
                     <h2 class="item-card__title">{{producto.nombreProducto}}</h2>
                     <img class="item-card__image" src="../assets/img-categoria-persianas.jpg" alt="Productos Persianas">
                     <div class="item-card__details">
