@@ -1,32 +1,759 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+  <div>
+    <nav class="main-nav">
+        <div class="wrapper main-nav__elements">
+            <router-link to="/">
+                <img :src="require('@/assets/logo.png')" alt="logo">
+            </router-link>
+
+            <ul class="main-nav__menu">
+                <li><router-link to="/cortinas" class="main-nav__menu-link" exact-active-class="main-nav__menu-link--active">Cortinas</router-link></li>  
+                <li><router-link to="/about" class="main-nav__menu-link" exact-active-class="main-nav__menu-link--active">¿Quienes Somos?</router-link></li>
+                <li><router-link to="/registros" class="main-nav__menu-link" exact-active-class="main-nav__menu-link--active">Registros</router-link></li>  
+            </ul>
+        </div>
+    </nav>
     <router-view/>
   </div>
 </template>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+/*### GOOGLE-FONTS ###*/
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Open+Sans:ital,wght@0,400;0,700;1,400&display=swap');
+@charset "UTF-8";
+
+@font-face {
+  font-family: "yanela-set";
+  src:url("assets/fonts/yanela-set.eot");
+  src:url("assets/fonts/yanela-set.eot?#iefix") format("embedded-opentype"),
+    url("assets/fonts/yanela-set.woff") format("woff"),
+    url("assets/fonts/yanela-set.ttf") format("truetype"),
+    url("assets/fonts/yanela-set.svg#yanela-set") format("svg");
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+[data-icon]:before {
+  font-family: "yanela-set" !important;
+  content: attr(data-icon);
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
 }
 
-#nav {
-  padding: 30px;
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+  font-family: "yanela-set" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
+.icon-menu:before {
+  content: "\61";
+}
+.icon-search:before {
+  content: "\62";
+}
+.icon-facebook:before {
+  content: "\63";
+}
+.icon-instagram:before {
+  content: "\64";
+}
+.icon-pinterest:before {
+  content: "\65";
+}
+.icon-youtube:before {
+  content: "\66";
+}
+.icon-linkedin:before {
+  content: "\67";
+}
+.icon-email:before {
+  content: "\69";
+}
+.icon-clock:before {
+  content: "\6a";
+}
+.icon-marker:before {
+  content: "\6b";
+}
+.icon-copyright:before {
+  content: "\6c";
+}
+.icon-whatsapp:before {
+  content: "\6d";
+}
+.icon-mobile:before {
+  content: "\68";
+}
+.icon-home:before {
+  content: "\6e";
+}
+.icon-folder:before {
+  content: "\6f";
+}
+.icon-file:before {
+  content: "\70";
 }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
+
+/*### RESET ###*/
+*, *:before, *:after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0; 
+}
+
+/*### VARIABLES CSS ###*/
+:root {
+    --color-principal: #224277;
+    --color-principal-eg: #4c4c4c; /* eg -> escala de grises*/
+    --color-principal-egtr: rgba(76, 76, 76, 0.17); /* egtr -> escala de grises con trasnparencia*/
+    --color-principal-tr:rgba(34, 66, 119, 0.5);/* tr -> con transparencia*/
+    --color-principal-trmin:rgba(34, 66, 119, 0.95);/* trmin -> con transparencia mínima*/
+    --extra-color1: #fff; 
+    --extra-color1-tr:rgba(255, 255, 255, 0.4);/* tr -> con transparencia*/
+}
+
+/*### ESTILOS BASE ###*/
+html {
+    font-size: 16px;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+} 
+
+h1, h2, h3 {
+    font-family: 'Libre Baskerville', serif;
+}
+
+h1 {
+    font-size: 1.4em;
+}
+
+h2, h3 {
+    font-size: 1.35em;
+}
+
+p, a {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.1em;
+}
+
+img {
+    vertical-align: middle;
+    max-width: 100%;
+    height: auto; 
+}
+
+/*### LAYOUT ###*/
+.wrapper {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1024px; /*IPAD PRO 12.29*/
+}
+
+.grid-wrapper{
+    display: grid;
+    gap: 2em;
+}
+
+.grid-column-mobile-4 {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+/*### CLASES ETIQUETAS SEMANTICAS ###*/
+/*Main Header*/
+.main-header, .main-header--alt {
+    background: url(assets/hogar-persiana-large.jpg) center center / cover fixed; 
+    padding-top: 52px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-header {
+    height: 70vh;
+}
+
+.main-header--alt {
+    height: auto;
+}
+
+/*Main Nav*/
+.main-nav {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: var(--extra-color1);
+    z-index: 1000;
+    border-bottom: 1px solid var(--color-principal);
+}
+
+.main-nav__elements {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .25em .5em;
+}
+
+.main-nav__elements > .icon-menu {
+    order: 1;
+}
+ 
+.main-nav__menu, .main-nav__search {
+    background: var(--color-principal-trmin);
+    padding: 3em 0;
+    text-align: center;
+    position: fixed;
+    top: 44px;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    left: 100%;
+    transition: all 0.5s;
+}
+
+.main-nav__menu {
+    z-index: 2000;  
+}
+
+.main-nav__menu--active, .main-nav__search--active {              
+    left: 0;
+}
+
+.main-nav__search-input {
+    border: 1px solid var(--extra-color1);
+    color: var(--color-principal);
+    font-style: italic;
+    padding: .5em;
+    width: 50vw;
+}
+
+.main-nav__search-button {
+    display: none;
+}
+
+.main-nav__menu-link, .main-nav__menu-link--active {
+    font-family: 'Libre Baskerville', serif;
+    color: var(--extra-color1);
+    display: block;
+    line-height: 2;
+    padding: .5em;
+}
+
+.main-nav__menu-link--active {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.main-nav__icon-toggle {
+    margin-left: .5em;
+    color: var(--color-principal);
+    font-size: 1.5em;
+    line-height: 0px;
+    padding: .2em;
+    border: 2px solid var(--color-principal);
+    border-radius: 50%;
+}
+
+/* Aside: Our Providers */
+.our-providers {
+    background: var(--color-principal);
+    color: var(--extra-color1);
+    padding: 1em 0;
+    border-top: 1.5em solid var(--color-principal-egtr);
+    border-bottom: 1.5em solid var(--color-principal-egtr);
+}
+icons-set
+.our-providers__logos {
+    padding: 1.5em 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2em;
+    justify-items: center;
+}
+
+.our-providers .card__title, 
+.our-providers .card__text {
+    color: var(--extra-color1);
+    text-align: center;
+}
+
+/* Main Footer */
+.main-footer {
+    /* background: url(../images/hogar-persiana-footer.jpg) center center / cover fixed; */
+}
+
+.main-footer__card {
+    padding: 1em 0;
+    border-top: 1px solid var(--extra-color1);
+    border-bottom: 1px solid var(--extra-color1);
+}
+
+.main-footer, .main-footer__link, .main-footer__link--active {
+    color: var(--extra-color1);
+}
+
+.main-footer__link--active {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.main-footer__card-title {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    margin-bottom: 1em;
+    font-size: 1em;
+}
+
+.main-footer__card-item {
+    margin-bottom: .5em;
+    font-size: .8em;
+}
+
+.main-footer__icon {
+    font-size: 1em;;
+    margin-right: .5em;
+}
+
+.main-footer__card-social-wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .25em;
+    margin-bottom: 1em;
+    max-width: 260px;
+}
+
+.main-footer__card-social {
+    color: var(--extra-color1);
+    border: 1px solid var(--extra-color1);
+    padding: .5em;
+}
+
+.main-footer__copyright {
+    text-align: center;
+    padding: .5em 0;
+    font-size: .9em;
+}
+
+.main-footer__copyright-icon {
+    padding-right: .5em;
+}
+
+/*### CLASES OTROS ELEMENTOS ###*/
+/* Hero Info */
+.hero-info {
+    text-align: center;
+    padding: 2em;
+    background-color: var(--extra-color1-tr);
+}
+
+.hero-info__welcome {
+    font-family: 'Libre Baskerville', serif;
+    margin-bottom: 1em;
+    color:var(--color-principal);
+    font-size: 1.5em;
+}
+
+/* Card */
+.card__subtitle {
+    font-family: 'Open Sans', sans-serif;
+    text-align: left;
+    color: var(--color-principal-eg);
+    font-size: 1.4em;
+    margin-bottom: 1em;
+}
+
+.card__text {
+    margin-bottom: 1em;
+    font-size: 1.2em;
+}
+
+.card__image {
+    display: block;
+    border: 1px solid var(--color-principal);
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1rem;  
+}
+
+.card__sitemap {
+    border: 1px solid var(--color-principal-egtr);
+    padding: 1em .5em;
+}
+
+.card__sitemap .card__link-sitemap1, 
+.card__sitemap .card__link-sitemap2 {
+    color: var(--color-principal-eg);
+    font-size: 1.2em;
+    line-height: 0;
+    padding: .5em 0;
+    display: block;
+    width: max-content;
+}
+
+.card__link-sitemap1{
+    font-weight: bold;
+}
+
+.card__sitemap a span {
+    margin-right: 1em;
+    font-size: 1.4em;
+}
+
+.card__sitemap .icon-file {
+    margin-left: 1em;
+}
+
+.card__link-sitemap1 .icon-file {
+    margin-left: 0;
+}
+
+.card__text, .item-card__info {
+    color: var(--color-principal-eg);
+}
+
+/* Item Card */
+.item-card {
+    padding: .5em 0;
+}
+
+.card__title, .item-card__title {
+    color: var(--color-principal);
+    text-align: center;
+    margin-bottom: 1em;;
+}
+
+.item-card {
+    overflow: hidden;
+    position: relative; 
+    text-align: center; /* para cuando no tenga un ancla */
+    border: 1px solid var(--color-principal-egtr);
+}
+
+.item-card__link {
+    display: block;
+    text-align: center;
+}
+
+.item-card__image, .item-card__info, .item-card__form { 
+    padding: 0 .5em;
+}
+
+.item-card__image {
+    margin-bottom: 1rem;  
+}
+
+.item-card__info span{
+    color: var(--color-principal);
+    font-weight: bold;
+}
+
+.item-card__details {
+    display: none;
+}
+
+.item-card__form {
+    display: grid;
+    gap: 1em;
+}
+
+.item-card__form-input, .item-card__form-textarea {
+    border: 1px solid var(--color-principal);
+    color: var(--color-principal);
+    padding: .5em;
+    font-size: 1em;
+}
+
+.item-card__form-textarea {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1em;
+}
+
+.item-card__form > .link-button {
+    max-width: 100px;
+    border: none;
+}
+
+/* Link Button */
+.link-button {
+    color:var(--extra-color1);
+    border-radius: .5em;
+    display: inline-block;
+    padding: .75em;
+    background-color: var(--color-principal);
+}
+.link-button:hover {
+    background-color: var(--color-principal-eg);
+}
+
+/* Product Info */
+.product-info{
+    border: 1px solid var(--color-principal-egtr);
+    padding: .5em 0;
+}
+
+.product-info .item-card__image {
+    margin-bottom: 0;  
+}
+
+/* Tabla Registros */
+.tablaRegistros{
+    width: 100%;
+    text-align: center;
+    border-top: 1px solid rgba(76, 76, 76, 0.17);
+    padding: 1em;
+}
+
+.tablaRegistros tr th{
+    border: 1px solid rgba(76, 76, 76, 0.17);
+    padding: .5em;
+}
+
+.tablaRegistros tr td{
+    padding: .5em;
+    width: 20%;
+    text-align: left;
+    vertical-align:top;
+    border: 1px solid rgba(76, 76, 76, 0.17);
+}
+
+/* Space Usher */
+.space-usher {
+    padding: 1em .5em;
+}
+
+/**************************************************************************************************/
+/********************************MEDIA QUERY - IPAD PRO 12.29 *************************************/
+/**************************************************************************************************/
+
+@media all and (min-width: 1024px) { 
+    /*### ESTILOS BASE ###*/
+    h1 {
+        font-size: 2.25em;
+    }
+
+    h2, h3 {
+        font-size: 1.5em;
+    }
+
+    /*### LAYOUT ###*/
+    .grid-column-2{
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .grid-column-3{
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    /*### CLASES ETIQUETAS SEMANTICAS ###*/
+    /*Main Header*/
+    .main-header {
+        height: 90vh;
+        padding-top: 52px;
+    }
+    
+    /*Main Nav*/
+    .main-nav__menu {
+        display: flex;
+        background: none;
+        position: static;
+        padding: 0;
+        width: auto;
+        height: auto;
+    }
+
+    .main-nav__elements {
+        padding: .25em 0;
+    }
+
+    .main-nav__search {
+        display: inline;
+        background: none;
+        position: static;
+        padding: 0;
+        width: auto;
+        height: auto;
+    }
+
+    .main-nav__menu-link, .main-nav__menu-link--active {
+        color: var(--color-principal);
+        padding: .5em 1em;
+    }
+
+    .main-nav__menu-link:hover {
+        font-weight: bold;
+        transition: all 0.5s;
+    }
+
+    .main-nav__icon-toggle {
+        display: none;
+    }
+
+    .main-nav__search-button {
+        border: none;
+        display: inline;
+        cursor: pointer;
+    }
+
+    .main-nav__search-input {
+        border: 1px solid var(--color-principal);
+        color: var(--color-principal);
+        width: 200px;
+    }
+
+    .main-nav__search-icon {
+        color: var(--color-principal);
+        font-size: 1.5em;
+        line-height: 1.5;
+        padding: 0 .2em;
+    }
+
+    /* Aside: Our Providers */
+    .our-providers {
+        padding: 1.5em 0;
+    }
+
+    .our-providers__logos {
+        padding: 1em 0;
+        grid-template-columns: repeat(4, 1fr);
+        align-items: center;
+    }
+
+    .our-providers__logos-image {
+        max-width: 200px;
+    }
+
+    /* Main Footer */
+    .main-footer {
+        padding: 3em;
+    }
+
+    .main-footer__link:hover {
+        font-weight: bold;
+    }
+
+    .main-footer__card-social {
+        font-size: 1.2em;
+    }
+
+    .main-footer__card-social:hover {
+        border: 3px solid var(--extra-color1);
+    }
+
+    /*### CLASES OTROS ELEMENTOS ###*/
+    /* Hero Info */
+    .hero-info {
+        padding: 2.5em;
+    }
+
+    .hero-info__welcome {
+        font-size: 2.5em;
+    }
+
+    /* Card */
+    .card__text {
+        margin-bottom: 2em;
+    }
+
+    .card__sitemap {
+        padding: 1.5em 1em;
+        grid-column: 2/3;
+    }
+
+    .card__sitemap .card__link-sitemap1:hover,
+    .card__sitemap .card__link-sitemap2:hover {
+        color: var(--color-principal);
+    }
+
+    /* Item Card */
+    .item-card__details {
+        background: var(--color-principal-tr);
+        border: 1px solid var(--color-principal);
+        height: 100%;
+        top: -100%;
+        position: absolute;
+        text-align: center;
+        transition: all 0.5s;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .item-card__details span {
+        color: var(--extra-color1);
+        font-size: 3em; 
+    }
+
+    .item-card:hover .item-card__details {
+        top: 0; 
+    }
+
+    .item-card__image, .item-card__info { 
+        padding: 0 1em;
+    }
+
+    .item-card__form { 
+        padding: 1em;
+    }
+
+    .item-card__form-input {
+        max-width: 100%;
+    }
+
+    .item-card__form-textarea {
+        grid-column: 1/3;
+    }
+
+    /* Product Info */
+    .product-info{
+        padding: 1em 0;
+    }
+
+    /* Space Usher */
+    .space-usher {
+        padding: 1.5em 0;
+    }
+
+    /* Animated Element */
+    .animated-element {
+        opacity: 0;
+        transition: all 0.1s;
+    }
+
+    .from-above {
+        animation: fromAbove 1s;
+    }
+
+    @keyframes fromAbove{
+        0% {
+            transform: translateY(4em);
+        }
+        100% {
+            transform: translateY(0);
+        }
+    }
 }
 </style>

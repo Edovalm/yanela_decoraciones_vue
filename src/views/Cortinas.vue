@@ -1,7 +1,7 @@
 <template>
-    <div>
-      <MainHero/>
-      <main>
+  <div>
+    <RegularHero/>
+    <main>
         <div class="wrapper card space-usher">
             <h1 class="card__title">Productos Para Ti en Yanela Decoraciones</h1>
             <p class="card__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos repellat atque officia, quis molestias vel dolore deleniti unde expedita sit cupiditate odit illum saepe libero esse, cum ipsa eum rerum?</p>
@@ -21,17 +21,17 @@
             </section>
         </div>
       </main>
-    </div>
+  </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import MainHero from '@/components/MainHero.vue'
+import RegularHero from '@/components/RegularHero.vue'
+
 import axios from 'axios'
 export default {
-  name: 'Home',
+  name: 'Cortinas',
   components: {
-    MainHero
+    RegularHero
   },
   data(){
   return{
